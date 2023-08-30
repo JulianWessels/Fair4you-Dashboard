@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fair4you Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/uikit.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="/assets/js/uikit.min.js"></script>
+    <script src="/assets/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="tm-page">
+        <div class="tm-header-mobile uk-hidden@m" uk-header>
+            <div class="uk-navbar-container">
+                <div class="uk-container uk-container-expand">
+                    <nav class="uk-navbar" uk-navbar="{&quot;container&quot;:&quot;.tm-header-mobile&quot;}">
+                        <div class="uk-navbar-left">
+                            <a href="/" aria-label="Back to home" class="uk-logo uk-navbar-item">
+                                <img alt loading="eager" width="150" height="70" src="/assets/logo/logo.svg"></a>
+                        </div>
+                        <div class="uk-navbar-right">
+                            <a uk-toggle aria-label="Open Menu" href="#tm-dialog-mobile" class="uk-navbar-toggle"
+                                aria-expanded="false">
+                                <div uk-navbar-toggle-icon class="uk-icon uk-navbar-toggle-icon"></div>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div id="tm-dialog-mobile" uk-offcanvas="container: true; overlay: true" mode="slide" flip
+                class="uk-offcanvas">
+                <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                    <button class="uk-offcanvas-close uk-close-large uk-icon uk-close" type="button" uk-close
+                        uk-toggle="cls: uk-close-large; mode: media; media: @s"></button>
+                    <div class="uk-margin-auto-bottom">
+                        <div class="uk-grid uk-child-width-1-1">
+                            <div>
+                                <div class="uk-panel" id="module-menu-dialog-mobile">
+                                    <ul class="uk-nav uk-nav-default">
+                                        <li class="item-101 uk-active"><a href="#">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tm-header uk-visible@m" uk-header>
+            <div class="uk-navbar-container">
+                <div class="uk-container uk-container-expand">
+                    <nav class="uk-navbar"
+                        uk-navbar="{&quot;align&quot;:&quot;left&quot;,&quot;container&quot;:&quot;.tm-header&quot;,&quot;boundary&quot;:&quot;.tm-header .uk-navbar-container&quot;}">
+                        <div class="uk-navbar-left">
+                            <a href="/" aria-label="Back to home" class="uk-logo uk-navbar-item">
+                                <img alt loading="eager" width="200" height="93" src="/assets/logo/logo.svg"></a>
+                        </div>
+                        <div class="uk-navbar-right">
+                            <ul class="uk-navbar-nav">
+                                <li class="item-101 uk-active"><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="uk-section-default uk-section uk-padding-remove-top uk-padding-remove-bottom"
+            uk-height-viewport="expand: true;" style="min-height: 774.656px;">
+            <div class="tm-grid-expand uk-grid-margin uk-grid uk-grid-collapse" uk-grid>
+                <div class="uk-width-medium@m uk-visible@m uk-first-column">
+                    <div class="uk-tile-primary uk-tile uk-tile-small" uk-height-viewport="offset-top: true;"
+                        style="min-height: calc(100vh - 113px);">
+                        <h3><strong>Menü</strong></h3>
+                        <div>
+                            <ul class="uk-margin-remove-bottom uk-nav uk-nav-default">
+                                <li class="el-item ">
+                                    <a class="el-link" href="/" uk-scroll>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li class="el-item ">
+                                    <a class="el-link" href="/form.html" uk-scroll>
+                                        Formulare
+                                    </a>
+                                </li>
+                                <li class="el-item ">
+                                    <a class="el-link" href="/login.html" uk-scroll>
+                                        Anmeldemaske
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-expand@m">
+                    <div id="app" class="uk-tile uk-tile-muted uk-tile-small uk-overflow-auto" uk-height-viewport="offset-top: true;"
+                        style="min-height: calc(100vh - 113px);max-height: max(0px, 100vh - 80px);">
+
+                        <div class="uk-filter-wrapper">
+                            <div uk-grid>
+                                <div class="uk-width-1-2 uk-flex uk-flex-bottom">
+                                    <!-- Search field -->
+                                    <div class="uk-inline uk-width-medium">
+                                        <input class="uk-input" type="text" placeholder="Suchen...">
+                                        <button style="padding-left: 12px; padding-right: 12px;"
+                                            class="uk-button uk-button-primary uk-position-right"><span
+                                                uk-icon="icon: search"></span></button>
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-2 uk-flex uk-flex-right">
+                                    <div class="uk-text-right uk-width-medium uk-position-relative">
+                                        <label class="uk-form-label uk-position-top-right" style="top: -22px"
+                                            for="form-stacked-select">Sortieren</label>
+                                        <div class="uk-form-controls">
+                                            <select class="uk-select" id="form-stacked-select">
+                                                <option>Aufsteigend</option>
+                                                <option>Absteigend</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="uk-table uk-table-responsive uk-table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nr.</th>
+                                    <th>Anzahl</th>
+                                    <th>Artikel</th>
+                                    <th><nobr>Maße in m <small>(hxbxt)</small></nobr></th>
+                                    <th>Indikator</th>
+                                    <th class="uk-text-center">Zustand</th>
+                                    <th class="uk-text-center">Bild</th>
+                                    <th class="uk-text-right">Handlungspauschale</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(entry, index) in entries" class="el-item">
+                                    <td class="uk-hidden@m">
+                                        <div class="uk-text-center">
+                                            <img src="https://placehold.co/600x400" alt="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div><span class="uk-hidden@m">Nr.: </span>{{index}}</div>
+                                    </td>
+                                    <td>
+                                        <div><span class="uk-hidden@m">Anzahl: </span>10</div>
+                                    </td>
+                                    <td class="uk-text-nowrap uk-table-expand"> 
+                                        <div><span class="uk-hidden@m">Artikel: </span>Theke oval "apetito AG"</div>
+                                    </td>
+                                    <td>
+                                        <div><span class="uk-hidden@m">Maße: </span>(1,07x0,60x0,60)</div>
+                                    </td>
+                                    <td class="uk-text-nowrap uk-table-shrink">
+                                        <div class="uk-text-center">
+                                            <img uk-toggle="target: #modal-icons" src="/assets/icons/feather-icons/airplay.svg" alt=""></option>
+                                        </div>
+                                    </td>
+                                    <td class="uk-text-nowrap uk-table-shrink">
+                                        <div class="uk-text-center">
+                                            <span class="uk-label uk-label-success uk-width-1-1@m"><span
+                                                    class="uk-hidden@m">Status: </span>OK</span>
+                                        </div>
+                                    </td>
+                                    <td class="uk-visible@m">
+                                        <div class="uk-text-center">
+                                            <img class="thumbnail" src="https://placehold.co/600x400" alt="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="uk-text-right@m">
+                                            <span class="uk-hidden@m">Preis: </span>25,00€
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- This is the modal -->
+                        <div id="modal-icons" uk-modal>
+                            <div class="uk-modal-dialog uk-modal-body">
+                                <h2 class="uk-modal-title">Wähle ein Icon</h2>
+                                <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                                <div class="uk-margin-top uk-grid-collapse" uk-grid>
+                                    <div v-for="icon in feathericons" class="uk-width-auto">
+                                        <a class="icon" href="#">
+                                            <img src="/assets/icons/feather-icons/" width="100%" :src="'/assets/icons/feather-icons/' + icon + '.svg'" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                entries: 100,
+                feathericons: [
+                    "activity",
+                    "airplay",
+                    "alert-circle",
+                    "alert-octagon",
+                    "alert-triangle",
+                    "align-center",
+                    "align-justify",
+                    "align-left",
+                    "align-right",
+                    "anchor",
+                    "aperture",
+                    "archive",
+                    "arrow-down-circle",
+                    "arrow-down-left",
+                    "arrow-down-right",
+                    "arrow-down",
+                    "arrow-left-circle",
+                    "arrow-left",
+                    "arrow-right-circle",
+                    "arrow-right",
+                    "arrow-up-circle",
+                    "arrow-up-left",
+                    "arrow-up-right",
+                    "arrow-up",
+                    "at-sign",
+                    "award",
+                    "bar-chart-2",
+                    "bar-chart",
+                    "battery-charging",
+                    "battery",
+                    "bell-off",
+                    "bell",
+                    "bluetooth",
+                    "bold",
+                    "book-open",
+                    "book",
+                    "bookmark",
+                    "box",
+                    "briefcase",
+                    "calendar",
+                    "camera-off",
+                    "camera",
+                    "cast",
+                    "check-circle",
+                    "check-square",
+                    "check",
+                    "chevron-down",
+                    "chevron-left",
+                    "chevron-right",
+                    "chevron-up",
+                    "chevrons-down",
+                    "chevrons-left",
+                    "chevrons-right",
+                    "chevrons-up",
+                    "chrome",
+                    "circle",
+                    "clipboard",
+                    "clock",
+                    "cloud-drizzle",
+                    "cloud-lightning",
+                    "cloud-off",
+                    "cloud-rain",
+                    "cloud-snow",
+                    "cloud",
+                    "code",
+                    "codepen",
+                    "codesandbox",
+                    "coffee",
+                    "columns",
+                    "command",
+                    "compass",
+                    "copy",
+                    "corner-down-left",
+                    "corner-down-right",
+                    "corner-left-down",
+                    "corner-left-up",
+                    "corner-right-down",
+                    "corner-right-up",
+                    "corner-up-left",
+                    "corner-up-right",
+                    "cpu",
+                    "credit-card",
+                    "crop",
+                    "crosshair",
+                    "database",
+                    "delete",
+                    "disc",
+                    "divide-circle",
+                    "divide-square",
+                    "divide",
+                    "dollar-sign",
+                    "download-cloud",
+                    "download",
+                    "dribbble",
+                    "droplet",
+                    "edit-2",
+                    "edit-3",
+                    "edit",
+                    "external-link",
+                    "eye-off",
+                    "eye",
+                    "facebook",
+                    "fast-forward",
+                    "feather",
+                    "figma",
+                    "file-minus",
+                    "file-plus",
+                    "file-text",
+                    "file",
+                    "film",
+                    "filter",
+                    "flag",
+                    "folder-minus",
+                    "folder-plus",
+                    "folder",
+                    "framer",
+                    "frown",
+                    "gift",
+                    "git-branch",
+                    "git-commit",
+                    "git-merge",
+                    "git-pull-request",
+                    "github",
+                    "gitlab",
+                    "globe",
+                    "grid",
+                    "hard-drive",
+                    "hash",
+                    "headphones",
+                    "heart",
+                    "help-circle",
+                    "hexagon",
+                    "home",
+                    "image",
+                    "inbox",
+                    "info",
+                    "instagram",
+                    "italic",
+                    "key",
+                    "layers",
+                    "layout",
+                    "life-buoy",
+                    "link-2",
+                    "link",
+                    "linkedin",
+                    "list",
+                    "loader",
+                    "lock",
+                    "log-in",
+                    "log-out",
+                    "mail",
+                    "map-pin",
+                    "map",
+                    "maximize-2",
+                    "maximize",
+                    "meh",
+                    "menu",
+                    "message-circle",
+                    "message-square",
+                    "mic-off",
+                    "mic",
+                    "minimize-2",
+                    "minimize",
+                    "minus-circle",
+                    "minus-square",
+                    "minus",
+                    "monitor",
+                    "moon",
+                    "more-horizontal",
+                    "more-vertical",
+                    "mouse-pointer",
+                    "move",
+                    "music",
+                    "navigation-2",
+                    "navigation",
+                    "octagon",
+                    "package",
+                    "paperclip",
+                    "pause-circle",
+                    "pause",
+                    "pen-tool",
+                    "percent",
+                    "phone-call",
+                    "phone-forwarded",
+                    "phone-incoming",
+                    "phone-missed",
+                    "phone-off",
+                    "phone-outgoing",
+                    "phone",
+                    "pie-chart",
+                    "play-circle",
+                    "play",
+                    "plus-circle",
+                    "plus-square",
+                    "plus",
+                    "pocket",
+                    "power",
+                    "printer",
+                    "radio",
+                    "refresh-ccw",
+                    "refresh-cw",
+                    "repeat",
+                    "rewind",
+                    "rotate-ccw",
+                    "rotate-cw",
+                    "rss",
+                    "save",
+                    "scissors",
+                    "search",
+                    "send",
+                    "server",
+                    "settings",
+                    "share-2",
+                    "share",
+                    "shield-off",
+                    "shield",
+                    "shopping-bag",
+                    "shopping-cart",
+                    "shuffle",
+                    "sidebar",
+                    "skip-back",
+                    "skip-forward",
+                    "slack",
+                    "slash",
+                    "sliders",
+                    "smartphone",
+                    "smile",
+                    "speaker",
+                    "square",
+                    "star",
+                    "stop-circle",
+                    "sun",
+                    "sunrise",
+                    "sunset",
+                    "table",
+                    "tablet",
+                    "tag",
+                    "target",
+                    "terminal",
+                    "thermometer",
+                    "thumbs-down",
+                    "thumbs-up",
+                    "toggle-left",
+                    "toggle-right",
+                    "tool",
+                    "trash-2",
+                    "trash",
+                    "trello",
+                    "trending-down",
+                    "trending-up",
+                    "triangle",
+                    "truck",
+                    "tv",
+                    "twitch",
+                    "twitter",
+                    "type",
+                    "umbrella",
+                    "underline",
+                    "unlock",
+                    "upload-cloud",
+                    "upload",
+                    "user-check",
+                    "user-minus",
+                    "user-plus",
+                    "user-x",
+                    "user",
+                    "users",
+                    "video-off",
+                    "video",
+                    "voicemail",
+                    "volume-1",
+                    "volume-2",
+                    "volume-x",
+                    "volume",
+                    "watch",
+                    "wifi-off",
+                    "wifi",
+                    "wind",
+                    "x-circle",
+                    "x-octagon",
+                    "x-square",
+                    "x",
+                    "youtube",
+                    "zap-off",
+                    "zap",
+                    "zoom-in",
+                    "zoom-out"
+                ]
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
