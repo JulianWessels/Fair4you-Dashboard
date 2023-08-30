@@ -112,6 +112,7 @@
                                     </div>
                                 </div>
                                 <div class="uk-width-1-2 uk-flex uk-flex-right">
+                                    <!-- Sortierung -->
                                     <div class="uk-text-right uk-width-medium uk-position-relative">
                                         <label class="uk-form-label uk-position-top-right" style="top: -22px"
                                             for="form-stacked-select">Sortieren</label>
@@ -140,6 +141,8 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                <!-- Entferne hier das "v-for" umd die Demofunktion zu deaktivieren . Anschließend weiter unten noch das binding "{{index}}" kicken.-->
                                 <tr v-for="(entry, index) in entries" class="el-item">
                                     <td class="uk-hidden@m">
                                         <div class="uk-text-center">
@@ -206,6 +209,8 @@
     </div>
 
     <script>
+
+        // Dies ist notwendig, damit die Icons in der Modalbox angezeigt werden können. Die Variable "entries: 100" ist nur für die Demo.
 
         var app = new Vue({
             el: '#app',
@@ -502,8 +507,6 @@
                 ]
             }
         })
-
-
     </script>
 </body>
 
